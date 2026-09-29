@@ -49,7 +49,7 @@ interface HoursRow {
 interface StoreLocation {
   id: LocationId;
   name: string;
-  toggleLabel: string;
+  street: string;
   addressLines: string[];
   mapsQuery: string;
   note: string;
@@ -61,7 +61,7 @@ const LOCATIONS: StoreLocation[] = [
   {
     id: "umhlanga",
     name: "Umhlanga Rocks",
-    toggleLabel: "Umhlanga Rocks (Marine Drive)",
+    street: "Marine Drive",
     addressLines: ["30 Marine Drive, Shop no 1", "Umhlanga Rocks, Durban, 4319"],
     mapsQuery: "SOHO CAFE, 30 Marine Drive, Umhlanga Rocks, Durban, 4319",
     note: "A short walk from the promenade and the lighthouse.",
@@ -75,7 +75,7 @@ const LOCATIONS: StoreLocation[] = [
   {
     id: "sandton",
     name: "Sandton",
-    toggleLabel: "Sandton (Corlett Drive)",
+    street: "Corlett Drive",
     addressLines: ["3 Corlett Drive", "Illovo, Sandton"],
     mapsQuery: "SOHO CAFE, 3 Corlett Drive, Illovo, Sandton",
     note: "On Corlett Drive in Illovo, with street parking close by.",
@@ -755,7 +755,7 @@ export default function Home() {
           <div
             role="radiogroup"
             aria-label="Choose a store"
-            className="mt-8 inline-flex flex-wrap rounded-full border border-charcoal/10 bg-white p-1 shadow-sm"
+            className="mt-8 grid w-full grid-cols-2 gap-1 rounded-2xl border border-charcoal/10 bg-white p-1.5 shadow-sm sm:w-[460px]"
           >
             {LOCATIONS.map((loc) => {
               const active = loc.id === activeLocation;
@@ -765,18 +765,25 @@ export default function Home() {
                   role="radio"
                   aria-checked={active}
                   onClick={() => setActiveLocation(loc.id)}
-                  className={`relative rounded-full px-5 py-2.5 text-sm font-medium ${
-                    active ? "text-tile" : "text-charcoal/70 hover:text-charcoal"
+                  className={`relative rounded-xl px-3 py-3 text-center transition-colors sm:px-5 ${
+                    active ? "text-tile" : "text-charcoal hover:bg-tile/60"
                   }`}
                 >
                   {active && (
                     <motion.span
                       layoutId="location-pill"
-                      className="absolute inset-0 rounded-full bg-forest"
+                      className="absolute inset-0 rounded-xl bg-forest shadow-[0_6px_16px_rgba(74,107,93,0.35)]"
                       transition={{ type: "spring", stiffness: 420, damping: 34 }}
                     />
                   )}
-                  <span className="relative">{loc.toggleLabel}</span>
+                  <span className="relative block truncate font-display text-[15px] font-semibold leading-tight sm:text-base">
+                    {loc.name}
+                  </span>
+                  <span
+                    className={`relative mt-0.5 block truncate text-xs ${active ? "text-tile/70" : "text-charcoal/50"}`}
+                  >
+                    {loc.street}
+                  </span>
                 </button>
               );
             })}
