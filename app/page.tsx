@@ -535,7 +535,9 @@ export default function Home() {
               100% Halaal Certified
             </p>
             <h1 className="mt-6 font-display text-5xl font-semibold leading-[1.02] tracking-tight text-charcoal sm:text-6xl lg:text-7xl">
-              Coffee in the morning. Pizza from the fire.
+              <span className="block">Good food</span>
+              <span className="block">Good coffee</span>
+              <span className="block">Good company</span>
             </h1>
             <p className="mt-6 max-w-lg text-lg leading-relaxed text-charcoal/70">
               Specialty coffee, breakfast served all day and woodfired Neapolitan pizza, on Marine Drive in
