@@ -344,9 +344,9 @@ const REVIEWS = [
 /* ------------------------------------------------------------------ */
 
 const VINES = [
-  { left: "6%", length: 210, delay: 0, flip: false, hideOnMobile: false },
+  { left: "6%", length: 210, delay: 0, flip: false, hideOnMobile: true },
   { left: "17%", length: 140, delay: 1.2, flip: true, hideOnMobile: true },
-  { left: "44%", length: 180, delay: 0.6, flip: false, hideOnMobile: true },
+  { left: "44%", length: 180, delay: 0.6, flip: false, hideOnMobile: false },
   { left: "71%", length: 240, delay: 1.8, flip: true, hideOnMobile: false },
   { left: "88%", length: 160, delay: 0.9, flip: false, hideOnMobile: false },
 ];
@@ -502,7 +502,9 @@ export default function Home() {
               animate={reduceMotion ? undefined : { rotate: [-2.2, 2.2, -2.2] }}
               transition={{ duration: 7 + v.delay, repeat: Infinity, ease: "easeInOut", delay: v.delay }}
             >
-              <HangingVine length={v.length} flip={v.flip} />
+              <div className="origin-top scale-[0.6] md:scale-100">
+                <HangingVine length={v.length} flip={v.flip} />
+              </div>
             </motion.div>
           ))}
         </div>
@@ -525,9 +527,9 @@ export default function Home() {
           </div>
         )}
 
-        <div className="mx-auto grid max-w-6xl items-center gap-12 px-5 pb-20 pt-56 md:pt-60 lg:grid-cols-[1.1fr_0.9fr]">
+        <div className="mx-auto grid max-w-6xl items-center gap-12 px-5 pb-20 pt-20 md:pt-60 lg:grid-cols-[1.1fr_0.9fr]">
           <div>
-            <img src="/soho-logo.png" alt="SOHO CAFE" className="mb-8 h-28 w-auto sm:h-32" />
+            <img src="/soho-logo.png" alt="SOHO CAFE" className="mb-6 h-24 w-auto sm:mb-8 sm:h-32" />
             <p className="inline-flex items-center gap-2 rounded-full border border-forest/25 bg-white/60 px-3 py-1 text-sm font-medium text-forest">
               <Leaf className="h-4 w-4" />
               100% Halaal Certified
